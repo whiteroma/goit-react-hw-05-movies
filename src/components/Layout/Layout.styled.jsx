@@ -1,10 +1,15 @@
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
   max-width: 960px;
   margin: 0 auto;
   padding: 0 16px;
+
+  & > h4 {
+    margin-top: 30px;
+    margin-left: 15px;
+  }
 `;
 
 export const Header = styled.header`

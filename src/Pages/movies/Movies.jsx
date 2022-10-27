@@ -1,29 +1,32 @@
-import MovieDetails from 'Pages/moviedetails/MovieDetails';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Outlet, Link } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { Outlet, Link, useSearchParams, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Container, MoviesLink, Input, SearchBtn } from './Movies.styled';
+
 export default function Movies() {
-  const [query, setQuery] = useState('');
+  const location = useLocation();
+  const [query, setQuery] = useSearchParams('');
   const [movies, setMovies] = useState([]);
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = data => setQuery(data.SearchQuery);
-  console.log('query:', query);
+  const onSubmit = data =>
+    setQuery(data !== '' ? { query: data.SearchQuery } : '');
+  const searchQuery = query.get('query');
+  console.log('query', query);
+  console.log('searchQuery', searchQuery);
 
   useEffect(() => {
-    if (!query) {
+    if (!searchQuery) {
       return;
     }
 
     fetch(`
-    https://api.themoviedb.org/3/search/movie?api_key=bfc78256055c27ed6be30c1c43cfe9c3&language=en-US&query=${query}&page=1&include_adult=false`)
+    https://api.themoviedb.org/3/search/movie?api_key=bfc78256055c27ed6be30c1c43cfe9c3&language=en-US&query=${searchQuery}&page=1&include_adult=false`)
       .then(res => {
         if (res.ok) {
           return res.json();
@@ -42,35 +45,48 @@ export default function Movies() {
       .catch(error => {
         return toast.error(error.message);
       });
-  }, [query]);
+  }, [searchQuery]);
   console.log(movies);
 
   //   const notify = () => toast.error("Please enter your search query");
 
   return (
-    <>
-      {movies.length === 0 ? (
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-            name="SearchQuery"
-            {...register('SearchQuery', { required: true })}
-          />
-          {errors.SearchQuery && <span>Field is required</span>}
+    <Container>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          name="SearchQuery"
+          {...register('SearchQuery', { required: true })}
+        />
+        {errors.SearchQuery && <span>Field is required</span>}
 
-          <input type="submit" value="Search" />
-        </form>
-      ) : (
-        <ul>
-          {movies.map(({ id, title, name }) => {
+        <SearchBtn type="submit" value="Search" />
+      </form>
+      <ul>
+        {movies.map(
+          ({ poster_path, id, title, name, release_date, first_air_date }) => {
+            const date = new Date(release_date).getFullYear();
+            const date2 = new Date(first_air_date).getFullYear();
             return (
               <li key={id}>
-                <Link to={`${id}`}>{name ?? title}</Link>
+                <MoviesLink to={`${id}`} state={{ from: location }}>
+                  <img
+                    src={
+                      poster_path
+                        ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                        : 'https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie-1-3.jpg'
+                    }
+                    alt={title ?? name}
+                  ></img>
+                  <h4>
+                    {name ?? title} ({date || date2})
+                  </h4>
+                </MoviesLink>
               </li>
             );
-          })}
-        </ul>
-      )}
+          }
+        )}
+      </ul>
       <Outlet />
-    </>
+    </Container>
   );
 }
