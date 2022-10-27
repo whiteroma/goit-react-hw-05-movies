@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { StyledLink } from 'components/Layout/Layout.styled';
 import {
@@ -110,7 +110,7 @@ export default function MovieDetails() {
           )}
         </Container>
       )}
-      <Outlet />
+     <Suspense><Outlet /></Suspense>
     </>
   );
 }

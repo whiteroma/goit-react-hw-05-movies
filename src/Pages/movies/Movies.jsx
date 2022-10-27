@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useForm } from 'react-hook-form';
 import { Outlet, useSearchParams, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -90,7 +90,7 @@ export default function Movies() {
           }
         )}
       </ul>
-      <Outlet />
+      <Suspense><Outlet /></Suspense>
     </Container>
   );
 }
