@@ -27,4 +27,3 @@ export const ReviewsSpan = styled.span`
   font-weight: bold;
 `;
 
-export const ReviewText = styled.div``;

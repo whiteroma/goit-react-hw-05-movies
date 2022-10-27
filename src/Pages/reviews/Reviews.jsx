@@ -4,7 +4,6 @@ import {
   ReviewsList,
   ReviewsItem,
   ReviewsSpan,
-  ReviewText,
 } from './Reviews.styled';
 import { Container } from 'components/Layout/Layout.styled';
 
