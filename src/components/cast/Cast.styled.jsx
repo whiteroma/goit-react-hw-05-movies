@@ -8,6 +8,7 @@ export const CastList = styled.ul`
   justify-content: space-between;
   padding: 15px;
   margin-left: -10px;
+  transition: transform 3s ease-in-out;
 `;
 
 export const CastItem = styled.li`
@@ -16,15 +17,19 @@ export const CastItem = styled.li`
   margin-left: 10px;
   margin-top: 20px;
   justify-content: space-between;
-  width: calc(25% - 10px);
-  box-shadow: 0px 0px 4px 2px orangered;
+  flex-basis: calc((100% - 60px) / 4);
+  border-bottom: 1px solid orangered;
+  cursor: pointer;
   :hover {
+    transform: scale(1.05);
     color: orangered;
   }
 
   & > img {
-    width: 100%;
-    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 2px orangered;
   }
 
   & > h4 {

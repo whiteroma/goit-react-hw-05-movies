@@ -32,7 +32,7 @@ export default function Cast() {
             <img
               src={
                 profile_path
-                  ? `https://image.tmdb.org/t/p/w500${profile_path}`
+                  ? `https://image.tmdb.org/t/p/w220_and_h330_face${profile_path}`
                   : 'https://hollywoodlife.com/wp-content/uploads/2016/05/actor-on-a-red-carpet-reddit-ftr1.jpg?w=600&h=432&crop=1'
               }
               alt={name}

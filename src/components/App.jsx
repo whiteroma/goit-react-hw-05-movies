@@ -3,10 +3,12 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from 'Pages/home/Home';
 import { Layout } from './Layout/Layout';
-import Movies from 'Pages/movies/Movies';
-import MovieDetails from 'Pages/moviedetails/MovieDetails';
-import Cast from 'Pages/cast/Cast';
-import Reviews from 'Pages/reviews/Reviews';
+import { lazy } from 'react';
+
+const Movies = lazy(() => import('Pages/movies/Movies'));
+const MovieDetails = lazy(() => import('components/moviedetails/MovieDetails'));
+const Cast = lazy(() => import('components/cast/Cast'));
+const Reviews = lazy(() => import('components/reviews/Reviews'));
 
 export const App = () => {
   return (

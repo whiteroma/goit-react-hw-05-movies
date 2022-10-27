@@ -21,8 +21,10 @@ export const TrendingItem = styled.li`
   margin-left: 15px;
   margin-top: 15px;
   justify-content: flex-start;
-  flex-basis: calc((100% - 120px) / 4);
-  box-shadow: 0px 0px 4px 2px orangered;
+  flex-basis: calc((100% - 60px) / 4);
+  border-bottom: 1px solid orangered;
+  transition: transform 3s ease-in-out;
+
   :hover {
     color: orangered;
   }
@@ -37,12 +39,15 @@ export const TrendingLink = styled(Link)`
   text-decoration: none;
   color: black;
   :hover {
+    transform: scale(1.05);
     color: orangered;
   }
 
   & > img {
-    width: 100%;
-    height: auto;
+    max-width: auto;
+    max-height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 2px orangered;
   }
 
   & > h4 {

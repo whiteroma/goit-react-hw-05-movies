@@ -6,11 +6,12 @@ export const AboutMovie = styled.div`
   margin-top: 20px;
 
   & > img {
-    height: 20%;
-    width: 25%;
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 2px orangered;
     align-self: flex-start;
     margin-right: 20px;
-    box-shadow: 0px 0px 4px 2px orangered;
   }
 `;
 

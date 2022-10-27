@@ -26,4 +26,3 @@ export const ReviewsSpan = styled.span`
   color: orangered;
   font-weight: bold;
 `;
-

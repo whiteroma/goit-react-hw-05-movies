@@ -22,8 +22,9 @@ export const Container = styled.div`
       margin-left: 15px;
       margin-top: 15px;
       justify-content: flex-start;
-      flex-basis: calc((100% - 120px) / 4);
-      box-shadow: 0px 0px 4px 2px orangered;
+      flex-basis: calc((100% - 60px) / 4);
+      border-bottom: 1px solid orangered;
+      transition: transform 3s ease-in-out;
       :hover {
         color: orangered;
       }
@@ -50,17 +51,22 @@ export const Input = styled.input`
   height: 20px;
   font-size: 15px;
   margin-right: 3px;
+  border-radius: 4px;
 
-  :focus-within {
-    border-color: orangered;
+  &:focus-within {
+    outline-color: orangered !important;
   }
 
-  :focus-visible {
-    border-color: orangered;
+  &:focus-visible {
+    outline-color: orangered !important;
   }
 
-  :focus {
-    border-color: orangered;
+  &:focus {
+    outline-color: orangered !important;
+  }
+
+  &:active {
+    outline-color: orangered !important;
   }
 `;
 
@@ -83,11 +89,14 @@ export const MoviesLink = styled(Link)`
   color: black;
   :hover {
     color: orangered;
+    transform: scale(1.05);
   }
 
   & > img {
-    width: 100%;
-    height: auto;
+    max-width: 100%;
+    max-height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 2px orangered;
   }
 
   & > h4 {

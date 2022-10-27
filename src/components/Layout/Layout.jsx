@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { StyledLink, Container, Header } from './Layout.styled';
 
@@ -12,7 +13,9 @@ export const Layout = () => {
           <StyledLink to="/movies">Movies</StyledLink>
         </nav>
       </Header>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </Container>
   );
 };

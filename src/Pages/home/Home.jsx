@@ -44,7 +44,7 @@ export default function Home() {
                   <img
                     src={
                       poster_path
-                        ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                        ? `https://image.tmdb.org/t/p/w220_and_h330_face${poster_path}`
                         : 'https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie-1-3.jpg'
                     }
                     alt={title ?? name}

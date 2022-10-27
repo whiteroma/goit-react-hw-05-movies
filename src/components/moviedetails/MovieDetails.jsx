@@ -16,6 +16,7 @@ export default function MovieDetails() {
   const location = useLocation();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const getBack = location.state?.from ?? '/';
 
   useEffect(() => {
     if (!movieId) {
@@ -62,14 +63,14 @@ export default function MovieDetails() {
               const userScore = Math.round(vote_average * 10) + '%';
               return (
                 <div key={id}>
-                  <Link to={location.state?.from ?? '/'}>
+                  <Link to={getBack}>
                     <BsArrowLeftSquareFill size="40px" color="orangered" />
                   </Link>
                   <AboutMovie>
                     <img
                       src={
                         poster_path
-                          ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                          ? `https://image.tmdb.org/t/p/w220_and_h330_face${poster_path}`
                           : 'https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie-1-3.jpg'
                       }
                       alt={title ?? name}
@@ -92,10 +93,14 @@ export default function MovieDetails() {
                     <h3>Additional information</h3>
                     <AdditionalList>
                       <li>
-                        <StyledLink to="cast">Cast</StyledLink>
+                        <StyledLink state={{ from: getBack }} to="cast">
+                          Cast
+                        </StyledLink>
                       </li>
                       <li>
-                        <StyledLink to="reviews">Reviews</StyledLink>
+                        <StyledLink state={{ from: getBack }} to="reviews">
+                          Reviews
+                        </StyledLink>
                       </li>
                     </AdditionalList>
                   </AdditionalDiv>

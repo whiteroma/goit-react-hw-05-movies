@@ -9,14 +9,18 @@ export default function Movies() {
   const location = useLocation();
   const [query, setQuery] = useSearchParams('');
   const [movies, setMovies] = useState([]);
+  const onSubmit = data =>
+    setQuery(data !== '' ? { query: data.SearchQuery } : '');
+  const searchQuery = query.get('query');
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const onSubmit = data =>
-    setQuery(data !== '' ? { query: data.SearchQuery } : '');
-  const searchQuery = query.get('query');
+  } = useForm({
+    defaultValues: {
+      SearchQuery: searchQuery,
+    },
+  });
   console.log('query', query);
   console.log('searchQuery', searchQuery);
 
@@ -72,7 +76,7 @@ export default function Movies() {
                   <img
                     src={
                       poster_path
-                        ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                        ? `https://image.tmdb.org/t/p/w220_and_h330_face${poster_path}`
                         : 'https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie-1-3.jpg'
                     }
                     alt={title ?? name}
